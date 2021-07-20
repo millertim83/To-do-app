@@ -15,6 +15,17 @@ function renderToDoList() {
     
     const deleteButton = document.createElement('button');
     deleteButton.textContent = "X"
+
+    const markTaskComplete = document.createElement('input');
+    markTaskComplete.type = 'checkbox';
+    node.appendChild(markTaskComplete);
+    markTaskComplete.addEventListener('click', (e) => {
+        const toDoListItem = e.target.parentElement;
+        if (markTaskComplete.checked) {
+        toDoListItem.style.textDecoration = "line-through";
+        console.log('Task completed');  
+        } else toDoListItem.style.textDecoration = "none";
+    })
     
     const clearList = document.querySelector('#clear-list');
     const toDoList = document.querySelector('#To-Do-List');
@@ -41,17 +52,4 @@ function renderToDoList() {
     });
 
 }
-
-
-
-
-
-
-
-
-
-
-
-//const checkBox = document.createElement('input');
-//checkBox.type = 'checkbox';
 
