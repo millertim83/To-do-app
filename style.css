@@ -1,6 +1,24 @@
-#button {
-    background-color: aqua;
-    border-radius: 5px;
-    height: 60px;
-    width: 125px;
+
+.buttons {
+    background-color: #ACC5DB;
+    height: 50px;
+    width: 100px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 80px;
+}
+
+
+#todo-input {
+    height: 50px;
+    width: 300px;
+    text-align: center;
+}
+
+.main-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
