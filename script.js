@@ -13,7 +13,7 @@ function renderToDoList() {
     const toDoText = addToDo.value;
     node.textContent = toDoText;
     
-    //Mark task complete with checkbox//
+    //Mark task complete with checkbox
     const markTaskComplete = document.createElement('input');
     markTaskComplete.type = 'checkbox';
     node.appendChild(markTaskComplete);
@@ -28,12 +28,12 @@ function renderToDoList() {
     document.getElementById("To-Do-List").appendChild(node);
     console.log(toDoText);
     
-    //Reset form after user enters item to list//
+    //Reset form after user enters item to list
     form.addEventListener('submit', (e) => {
         document.getElementById('form').reset();
     });
     
-    //delete button//
+    //delete button
     const deleteButton = document.createElement('button');
     deleteButton.textContent = "X"
     node.appendChild(deleteButton);
@@ -42,7 +42,7 @@ function renderToDoList() {
         console.log('List item removed');
     });
 
-    //clear list//
+    //clear list
     const clearList = document.querySelector('#clear-list');
     clearList.addEventListener("click", (e) => {
         while (toDoList.firstChild) {
