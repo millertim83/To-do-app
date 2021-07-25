@@ -1,55 +1,56 @@
-const form = document.getElementById('form');
-form.addEventListener("submit", (e) => {
+document.getElementById('form')
+    .addEventListener('submit', (e) => {
     e.preventDefault();
-    console.log('event type: ', e);
-    renderToDoList();
+    const todoInput = document.getElementById('todo-input');
+    const todoText = todoInput.value;
+    if (todoText === '') return;
+    displayTodo(todoText);
 });
 
 
 
-function renderToDoList() {
-    const node = document.createElement('li');
-    const addToDo = document.getElementById('todo-input');
-    const toDoText = addToDo.value;
-    node.textContent = toDoText;
+function displayTodo(todoText) {
+    const todoListItem = document.createElement('li');
+    const deleteButton = createDeleteButton(todoListItem);
+    const todoCheckbox = createTodoCheckbox(todoListItem);
     
-    //Mark task complete with checkbox
-    const markTaskComplete = document.createElement('input');
-    markTaskComplete.type = 'checkbox';
-    node.appendChild(markTaskComplete);
-    markTaskComplete.addEventListener('click', (e) => {
-        const toDoListItem = e.target.parentElement;
-        if (markTaskComplete.checked) {
-        toDoListItem.style.textDecoration = "line-through";
-        console.log('Task completed');  
-        } else toDoListItem.style.textDecoration = "none";
-    })
+    todoListItem.textContent = todoText;
+    todoListItem.appendChild(todoCheckbox);
+    todoListItem.appendChild(deleteButton);
+
+    document.getElementById("To-Do-List").appendChild(todoListItem);
     
-    document.getElementById("To-Do-List").appendChild(node);
-    console.log(toDoText);
+    document.getElementById('form').reset();
+}
     
-    //Reset form after user enters item to list
-    form.addEventListener('submit', (e) => {
-        document.getElementById('form').reset();
-    });
-    
-    //delete button
+ function createDeleteButton(todoListItem)   {
     const deleteButton = document.createElement('button');
     deleteButton.textContent = "X"
-    node.appendChild(deleteButton);
-    deleteButton.addEventListener("click", (e) => {
-        node.remove();
-        console.log('List item removed');
+    deleteButton.addEventListener("click", () => {
+        todoListItem.remove();
     });
+    return deleteButton;
+ }
 
-    //clear list
-    const clearList = document.querySelector('#clear-list');
-    clearList.addEventListener("click", (e) => {
+ function createTodoCheckbox(todoListItem) {
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.addEventListener('click', () => {
+        todoListItem.classList.toggle('done');
+    });
+    return checkbox;
+ }
+    
+
+
+
+
+document.querySelector('#clear-list')
+    .addEventListener('click', (e) => {
+        const toDoList = document.querySelector('#To-Do-List');
         while (toDoList.firstChild) {
-            toDoList.removeChild(toDoList.firstChild);
-        }
-        console.log('List has been cleared');
-    });
+        toDoList.removeChild(toDoList.firstChild);
+    }
+});
 
-}
 
